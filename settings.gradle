@@ -1,0 +1,4 @@
+rootProject.name = 'sports'
+include 'sports-api'
+include 'sports-frame'
+

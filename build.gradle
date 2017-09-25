@@ -1,0 +1,97 @@
+allprojects {
+    apply plugin: 'java'
+    group = 'com.yhsoft'
+    version = '1.0'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+// 所有子项目的通用配置
+subprojects {
+    /* configure(subprojects.findAll {it.name.contains('war')}) {
+         apply plugin: 'war'
+     }*/
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    //定义版本号
+
+
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        mavenCentral()
+        jcenter()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url 'http://maven.springframework.org/release' }
+        maven { url 'http://maven.springframework.org/milestone' }
+    }
+
+    dependencies {
+
+        compile "org.springframework.boot:spring-boot-actuator:${spring_boot_version}"
+        compile "org.springframework.boot:spring-boot-autoconfigure:${spring_boot_version}"
+        compile "org.springframework.boot:spring-boot-loader-tools:${spring_boot_version}"
+        compile "org.springframework.boot:spring-boot-starter-logging:${spring_boot_version}"
+        compile "org.springframework.boot:spring-boot-starter-aop:${spring_boot_version}"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa:${spring_boot_version}"
+        compile "org.springframework.boot:spring-boot-starter-security:${spring_boot_version}"
+        compile ("org.springframework.boot:spring-boot-starter-web:${spring_boot_version}") {
+            exclude module: 'spring-boot-starter-tomcat'
+        }
+
+        compile "org.springframework.boot:spring-boot-starter-undertow:${spring_boot_version}"
+        compile "org.springframework.boot:spring-boot-starter-cloud-connectors:${spring_boot_version}"
+        compile ("org.springframework:spring-context-support:${spring_security_version}") {
+            exclude(module: 'quartz')
+        }
+        compile "org.springframework.security:spring-security-config:${spring_security_version}"
+        compile "org.springframework.security:spring-security-data:${spring_security_version}"
+        compile "org.springframework.security:spring-security-web:${spring_security_version}"
+        compile("io.springfox:springfox-swagger2:${springfox_version}") {
+            exclude module: 'mapstruct'
+        }
+        compile("io.springfox:springfox-swagger-ui:${springfox_version}")
+        compile("com.alibaba:druid:1.0.15")
+        compile ("mysql:mysql-connector-java:6.0.6")
+        compile("net.logstash.logback:logstash-logback-encoder:${logstash_logback_encoder_version}") {
+            exclude(module: 'ch.qos.logback')
+        }
+
+        compile "org.apache.commons:commons-lang3:${commons_lang_version}"
+        compile "commons-io:commons-io:${commons_io_version}"
+        compile "javax.inject:javax.inject:${javax_inject_version}"
+        compile "javax.transaction:javax.transaction-api:1.2"
+
+        compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+        compile "io.springfox:springfox-bean-validators:${springfox_version}"
+        testCompile("org.springframework.boot:spring-boot-starter-test:${spring_boot_version}")
+
+
+    }
+
+    jar {
+        manifest {
+            attributes("Implementation-Title": "Gradle")
+        }
+    }
+
+    configurations {
+        // 所有需要忽略的包定义在此
+        //all*.exclude group: 'commons-httpclient'
+        //all*.exclude group: 'commons-logging'
+        //all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'
+    }
+
+    // 显示当前项目下所有用于 compile 的 jar.
+    task listJars(description: 'Display all compile jars.') << {
+        configurations.compile.each { File file -> println file.name }
+    }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}

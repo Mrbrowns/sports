@@ -1,0 +1,78 @@
+#配置模板
+#https://docs.spring.io/spring-boot/docs/1.4.0.RELEASE/reference/html/common-application-properties.html
+#spring.profiles.active属性来设置，其值对应{profile}值。
+#如：spring.profiles.active=test就会加载application-test.properties配置文件内容
+spring:
+#JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+  jpa:
+      database: mysql
+      generate-ddl: true
+      show-sql: true
+      database-platform: org.hibernate.dialect.MySQL5Dialect
+      hibernate:
+              ddl-auto: update
+              naming-strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+      properties: #配置:通过spring.jpa.properties.*来配置Hibernate的属性
+              hibernate:
+                 show-sql: true
+                 hbm2ddl:
+                    atuo: true
+                    use-new-id-generator-mappings: true
+  datasource:
+  #数据源
+        druid:
+            write:
+                url: jdbc:mysql://localhost:3306/jpa
+                username: root
+                password: newpassword
+                driver-class-name: com.mysql.jdbc.Driver
+            read:
+                url: jdbc:mysql://localhost:3306/jpa
+                username: root
+                password: newpassword
+                driver-class-name: com.mysql.jdbc.Driver
+security:
+    basic:
+        enabled: false
+
+server:
+    session:
+        cookie:
+            http-only: true
+    port: 8443   #开启https
+    ssl:
+      key-store-password: sporttest
+      key-store: classpath:mykeys.jks
+      server.ssl.keyStoreType: PKCS12
+      key-alias: tomcat
+
+SportProperties:
+    async:
+        corePoolSize: 2
+        maxPoolSize: 50
+        queueCapacity: 10000
+    #cors: #By default CORS are not enabled. Uncomment to enable.
+        #allowed-origins: "*"
+        #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+        #allowed-headers: "*"
+        #exposed-headers:
+        #allow-credentials: true
+        #max-age: 1800
+    mail:
+        from: jhipsterGradleSampleApplication@localhost
+    swagger:
+        title: 体育公众号 API
+        description: 体育公众号 API documentation
+        version: 0.0.1
+        termsOfServiceUrl:
+        contactName:
+        contactUrl:
+        contactEmail:
+        license:
+        licenseUrl:
+    ribbon:
+        # comma separated list of profiles to show a ribbon on the GUI
+        displayOnActiveProfiles: dev
+debug: true
+
+

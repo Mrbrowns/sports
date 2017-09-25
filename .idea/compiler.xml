@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="sports-api_main" target="1.8" />
+      <module name="sports-api_test" target="1.8" />
+      <module name="sports-frame_main" target="1.8" />
+      <module name="sports-frame_test" target="1.8" />
+      <module name="sports_main" target="1.8" />
+      <module name="sports_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

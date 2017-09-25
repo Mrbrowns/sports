@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.tomcat:tomcat-jaspic-api:8.5.20">
+    <CLASSES>
+      <root url="jar://D:/sdk/gradle-4.1/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-jaspic-api/8.5.20/520abe9dbd3557e8f25ae74de9340f9055c09c16/tomcat-jaspic-api-8.5.20.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/sdk/gradle-4.1/caches/modules-2/files-2.1/org.apache.tomcat/tomcat-jaspic-api/8.5.20/84471e74e32b8afe42cfc90c7d348e3630713ec8/tomcat-jaspic-api-8.5.20-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

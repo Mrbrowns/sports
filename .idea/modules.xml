@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports.iml" filepath="$PROJECT_DIR$/.idea/modules/sports.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports-api.iml" filepath="$PROJECT_DIR$/.idea/modules/sports-api.iml" group="sports-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports-api/sports-api_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sports-api/sports-api_main.iml" group="sports-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports-api/sports-api_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sports-api/sports-api_test.iml" group="sports-api" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports-frame.iml" filepath="$PROJECT_DIR$/.idea/modules/sports-frame.iml" group="sports-frame" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports-frame/sports-frame_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sports-frame/sports-frame_main.iml" group="sports-frame" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports-frame/sports-frame_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sports-frame/sports-frame_test.iml" group="sports-frame" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sports_main.iml" group="sports" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sports_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sports_test.iml" group="sports" />
+    </modules>
+  </component>
+</project>

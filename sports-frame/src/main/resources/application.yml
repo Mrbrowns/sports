@@ -1,0 +1,146 @@
+#配置模板
+#https://docs.spring.io/spring-boot/docs/1.4.0.RELEASE/reference/html/common-application-properties.html
+#spring.profiles.active属性来设置，其值对应{profile}值。
+#如：spring.profiles.active=test就会加载application-test.properties配置文件内容
+spring:
+#JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+  jpa:
+      database: mysql
+      generate-ddl: true
+      show-sql: true
+      database-platform: org.hibernate.dialect.MySQL5Dialect
+      hibernate:
+              ddl-auto: update
+              naming-strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+      properties: #配置:通过spring.jpa.properties.*来配置Hibernate的属性
+              hibernate:
+                 show-sql: true
+                 hbm2ddl:
+                    atuo: true
+                    use-new-id-generator-mappings: true
+  datasource:
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        filters: stat,wall,logback
+
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/db
+        username: root
+        password: newpassword
+
+        # 初始化大小，最小，最大
+        dbcp:
+          max-active: 20
+          initial-size: 5
+          min-idle: 5
+          # 配置获取连接等待超时的时间
+          max-wait: 60000
+          # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+          time-between-eviction-runs-millis: 60000
+          # 配置一个连接在池中最小生存的时间，单位是毫秒
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 1 FROM DUAL
+          test-on-borrow: false
+          test-while-idle: true
+          # 打开PSCache
+          pool-prepared-statements: true
+
+     # 从数据源
+  slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3308/db
+        username: root
+        password: newpassword
+        # 合并多个DruidDataSource的监控数据
+        useGlobalDataSourceStat: true
+        connectionProperties:
+           druid:
+               stat:
+                  mergeSql: true
+                  slowSqlMillis: 5000
+        dbcp:
+          initial-size: 5
+          min-idle: 5
+          max-active: 20
+          maxWait: 60000
+          time-between-eviction-runs-millis: 60000
+          # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+          time-between-eviction-runs-millis: 60000
+          # 配置一个连接在池中最小生存的时间，单位是毫秒
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 1 FROM DUAL
+          test-on-borrow: false
+          test-while-idle: true
+          # 打开PSCache
+          pool-prepared-statements: true
+          max-pool-prepared-statement-perConnectionSize: 20
+  read2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3309/db
+        username: root
+        password: newpassword
+        dbcp:
+           initial-size: 5
+           min-idle: 5
+           max-active: 20
+           maxWait: 60000
+           time-between-eviction-runs-millis: 60000
+           # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+           time-between-eviction-runs-millis: 60000
+           # 配置一个连接在池中最小生存的时间，单位是毫秒
+           min-evictable-idle-time-millis: 300000
+           validation-query: SELECT 1 FROM DUAL
+           test-on-borrow: false
+           test-while-idle: true
+           # 打开PSCache
+           pool-prepared-statements: true
+           max-pool-prepared-statement-perConnectionSize: 20
+
+
+security:
+    basic:
+        enabled: false
+
+server:
+    session:
+        cookie:
+            http-only: true
+    port: 8443   #开启https
+    ssl:
+      key-store-password: sporttest
+      key-store: classpath:mykeys.jks
+      server.ssl.keyStoreType: PKCS12
+      key-alias: tomcat
+
+SportProperties:
+    async:
+        corePoolSize: 2
+        maxPoolSize: 50
+        queueCapacity: 10000
+    #cors: #By default CORS are not enabled. Uncomment to enable.
+        #allowed-origins: "*"
+        #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+        #allowed-headers: "*"
+        #exposed-headers:
+        #allow-credentials: true
+        #max-age: 1800
+    mail:
+        from: jhipsterGradleSampleApplication@localhost
+    swagger:
+        title: 体育公众号 API
+        description: 体育公众号 API documentation
+        version: 0.0.1
+        termsOfServiceUrl:
+        contactName:
+        contactUrl:
+        contactEmail:
+        license:
+        licenseUrl:
+    ribbon:
+        # comma separated list of profiles to show a ribbon on the GUI
+        displayOnActiveProfiles: dev
+debug: true
+
+
+

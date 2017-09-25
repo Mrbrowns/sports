@@ -1,0 +1,8 @@
+
+apply plugin: 'war'
+apply plugin: 'idea'
+archivesBaseName ='sports-frame'
+dependencies {
+    compile project(":sports-api")
+    compile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '8.5.20'
+}
